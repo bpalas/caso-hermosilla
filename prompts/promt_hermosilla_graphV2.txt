@@ -1,0 +1,51 @@
+Your task is to identify all the individuals mentioned in the document, focusing on connections with Luis Hermosilla (lawyer), who is known for participating in numerous corruption cases.
+Or in individuals that are explicit implicated in corruption cases
+Provide structured information for each individual in relation to their involvement with Luis Hermosilla or others connected to him. 
+It's important to identify both direct and indirect relationships between individuals, as well as relationships among those connected.
+
+The response should include two components: "nodes" and "edges":
+
+- **nodes**: A list of dictionaries representing individuals with the following fields:
+  - "id": unique numeric identifier for each individual.
+  - "label": full name of the individual (first name and last name).
+  - "summary": a one-sentence summary in English describing the individual's role or involvement in corruption cases.
+
+- **edges**: A list of dictionaries representing the relationships between individuals with the following fields:
+  - "from": numeric id corresponding to one individual (initiator).
+  - "to": numeric id of the other individual involved (receiver).
+  - "label": a one-word summary of the relationship between the two individuals (in English). Use one of the following labels:
+    - **collaborator**: If both individuals worked together or participated directly in corrupt activities.
+    - **associate**: If the individuals are socially or professionally related, but it’s unclear whether they both engaged in corruption together.
+    - **beneficiary**: If one individual gained personal or financial benefits from the actions of another.
+    - **investigator**: If one individual investigated the other’s corrupt activities.
+    - **partner**: If both individuals were involved in the same scheme or corrupt plan as business partners or co-conspirators.
+    - **whistleblower**: If one individual exposed or reported the corrupt activities of the other.
+    - **financier**: If one individual provided financial support or resources for corrupt activities of the other.
+    - **intermediary**: If one individual acted as a middleman or facilitator between two parties involved in corruption.
+    - **defendant**: If both individuals were defendants in the same corruption case or legal process.
+    - **other**: If none of the above labels accurately represent the relationship.
+  - "summary": A one-sentence explanation in English of why the selected label was used for the relationship.
+
+Ensure that the 'id' field in 'nodes' matches the 'from' and 'to' fields in 'edges' to accurately represent relationships between individuals.
+
+Generate a new JSON object following this format:
+
+{
+    "nodes": [
+        
+            "id": integer, // Unique ID of the individual
+            "label": string, // Full name of the individual
+            "summary": string // 1-sentence summary of the individual in English
+        
+    ],
+    "edges": [
+        
+            "from": integer, // ID of the initiating individual
+            "to": integer, // ID of the receiving individual
+            "label": string, // One-word summary of the relationship (based on the provided labels)
+            "summary": string // 1-sentence explanation of the relationship in English
+        
+    ]
+}
+
+Use only lower case letters without accents.

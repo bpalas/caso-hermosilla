@@ -1,0 +1,49 @@
+Your task is to identify all the individuals mentioned in the document, focusing on connections with Luis Hermosilla (lawyer), who is known for participating in numerous corruption cases.
+Or in individuals that are explicit implicated in corruption cases
+Provide structured information for each individual in relation to their involvement with Luis Hermosilla or others connected to him. 
+It's important to identify both direct and indirect relationships between individuals, as well as relationships among those connected.
+
+The answer should contain "nodes" and "edges":
+
+
+- nodes: A list of dictionaries representing individuals with the following fields:
+- "id": unique number identifier
+-"label": name of person
+-"summary": 1-sentence summary of the individual in English
+
+- edges: A list of dictionaries representing the relationships between individuals:
+- "from": numeric id corresponding to one individual (initiator).
+- "to": numeric id of the other individual involved (receiver).
+- "label": a one word summary of the relationship between the two individuals (in English). You must use one of the following list of labels:
+    - **collaborator**: If both individuals worked together or participated directly in corrupt activities.
+    - **associate**: If the individuals are socially or professionally related, but it’s unclear whether they both engaged in corruption together.
+    - **beneficiary**: If one individual gained personal or financial benefits from the actions of another.
+    - **investigator**: If one individual is involved in investigating the other’s corrupt activities.
+    - **partner**: If both individuals were involved in the same scheme or corrupt plan as business partners or co-conspirators.
+    - **whistleblower**: If one individual exposed or reported the corrupt activities of the other.
+    - **financier**: If one individual provided financial support or resources to fund corrupt activities of the other.
+    - **intermediary**: If one individual acted as a middleman or facilitator between two parties involved in corruption.
+    - **defendant**: If both individuals were defendants in the same corruption case or legal process.
+
+- "sentiment": whether the relationship is "positive", "negative", or "neutral" based on the context of the corruption network.
+
+
+Ensure that the 'id' field in 'nodes' matches the 'from' and 'to' fields in 'edges' to accurately represent relationships between individuals.
+Generate a new JSON object containing the response:
+
+{
+    "nodes": [
+
+            "id": integer // ID of one individual
+            "label": string //  Full name of the individual
+            "summary": string // 1-sentence summary of the individual in Spanish
+      ],
+    "edges": [ // contains the list of all interactions of the specified entities
+
+            "from": integer // ID of one individual
+            "to": integer // ID of the other individual
+            "label": string // 1-word summary of the relationship between the two individuals (in English), based on the list of labels.
+            "sentiment": string // it can be "positive", "negative", "sentiment", based on the context of the corruption network
+     ]
+}
+Use only lower case letters without accents.
