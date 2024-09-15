@@ -1,0 +1,55 @@
+Your task is to identify all the individuals mentioned in the document, focusing on connections with Luis Hermosilla (lawyer), who is known for participating in numerous corruption cases.
+Or in individuals that are explicit implicated in corruption cases
+Provide structured information for each individual in relation to their involvement with Luis Hermosilla or others connected to him. 
+It's important to identify both direct and indirect relationships between individuals, as well as relationships among those connected.
+
+The response should include two components: "nodes" and "edges":
+
+- **nodes**: A list of dictionaries representing individuals with the following fields:
+  - "id": unique numeric identifier for each individual.
+  - "label": full name of the individual (first name and last name).
+  - "summary": a one-sentence summary in English describing the individual's role or involvement in corruption cases.
+
+- **edges**: A list of dictionaries representing the relationships between individuals with the following fields:
+  - "from": numeric id corresponding to one individual (initiator).
+  - "to": numeric id of the other individual involved (receiver).
+  - "label": one word summary. For each relationship, assign a label that best describes the nature of their connection, based on the following options (with their corresponding corruption scale from 1 to 10, 10 being the maximum point of corruption):
+        -observer (1):One individual is aware of the other's activities but is not directly involved.
+        -investigator (1): One individual investigates the corrupt activities of the other.
+        -acquaintance (2): Individuals know each other casually without significant involvement.
+        -whistleblower (2): One individual exposes or reports the corrupt activities of the other.
+        -informant (3): One individual provides information about the other's corrupt activities, possibly confidentially.
+        -associate (3): Individuals are socially or professionally connected, with unclear involvement in corruption.
+        -defendant (5): Both individuals are co-defendants in the same corruption case or legal process.
+        -beneficiary (6): One individual gains personal or financial benefits from the corrupt actions of the other.
+        -enabler (6): One individual indirectly allows or facilitates the other's corrupt activities.
+        -intermediary (7): One individual acts as a middleman or facilitator between the other and a third party in corrupt activities.
+        -accomplice (8): One individual assists the other in committing corrupt acts.
+        -partner (8): Individuals work together closely in corrupt schemes as partners or co-conspirators.
+        -financier (9): One individual provides financial support for the corrupt activities of the other.
+        -collaborator (10): Individuals actively work together in executing corrupt activities.
+        -other: If none of the above labels accurately represent the relationship.
+
+Output Format: Structure your findings in JSON format with two main components: "nodes" and "edges". Generate a new JSON object following this format:
+
+{
+    "nodes": [
+        
+            "id": integer, // Unique ID of the individual
+            "label": string, // Full name of the individual
+            "summary": string // 1-sentence summary of the individual in English
+        
+    ],
+    "edges": [
+        
+            "from": integer, // ID of the initiating individual
+            "to": integer, // ID of the receiving individual
+            "label": string, // One-word summary of the relationship (based on the provided labels)
+            "summary": string // 1-sentence explanation of the relationship in English
+        
+    ]
+}
+Ensure that the 'id' field in 'nodes' matches the 'from' and 'to' fields in 'edges' to accurately represent relationships between individuals. Base all information strictly on the content provided in the document. Avoid speculative or unverified statements. Be precise and neutral in your descriptions to maintain objectivity. Use only lower case letters without accents.
+
+
+
